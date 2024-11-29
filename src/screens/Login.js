@@ -10,7 +10,7 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`https://tipii-calendar-backend-405727229290.europe-west1.run.app/users/id-to-name?id=${id}`);  
+            const response = await axios.get(`https://gift.tipii.fr/api/users/id-to-name?id=${id}`);  
             const userName = response.data.name;
             if (userName) {
                 navigate('/calendar', { state: { userId: id , userName:name} });

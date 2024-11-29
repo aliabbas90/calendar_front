@@ -19,11 +19,11 @@ function Calendar() {
   useEffect(() => {
     const fetchDaysAndUpdate = async () => {
       try {
-        const daysResponse = await axios.get(`https://tipii-calendar-backend-405727229290.europe-west1.run.app/users/days?id=${userId}`);
+        const daysResponse = await axios.get(`https://gift.tipii.fr/api/users/days?id=${userId}`);
         const currentDays = daysResponse.data;
         setDays(currentDays);
 
-        const rewardsResponse = await axios.get(`https://tipii-calendar-backend-405727229290.europe-west1.run.app/users/rewards?id=${userId}`);
+        const rewardsResponse = await axios.get(`https://gift.tipii.fr/api/users/rewards?id=${userId}`);
         const cleanedRewards = rewardsResponse.data.map((reward) => JSON.parse(reward));
         setRewards(cleanedRewards);
 
@@ -35,7 +35,7 @@ function Calendar() {
             const dayIndex = day - 1;
             if (day <= today.getDate()) {
               if (currentDays[dayIndex] === 'closed') {
-                await axios.put('https://tipii-calendar-backend-405727229290.europe-west1.run.app/users/update-day', {
+                await axios.put('https://gift.tipii.fr/api/users/update-day', {
                   id: userId,
                   day_index: dayIndex,
                   new_day_value: 'ready_to_open',
@@ -44,7 +44,7 @@ function Calendar() {
               }
             } else {
               if (currentDays[dayIndex] !== 'closed') {
-                await axios.put('https://tipii-calendar-backend-405727229290.europe-west1.run.app/users/update-day', {
+                await axios.put('https://gift.tipii.fr/api/users/update-day', {
                   id: userId,
                   day_index: dayIndex,
                   new_day_value: 'closed',
