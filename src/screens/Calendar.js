@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Calendar.css';
 import caseImages from '../assets/cases';
@@ -18,7 +18,7 @@ function Calendar() {
   const location = useLocation();
   const userId = location.state?.userId || '';
   const userName = location.state?.userName || 'Utilisateur';
-
+  const navigate = useNavigate();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
   const [days, setDays] = useState([]);
@@ -38,6 +38,10 @@ function Calendar() {
   };
 
   useEffect(() => {
+    if (!userId) {
+      navigate('/');
+      return;
+    }
     const fetchDaysAndReward = async () => {
       try {
         // Récupérer l'état des jours depuis l'API
@@ -59,7 +63,7 @@ function Calendar() {
     if (userId) {
       fetchDaysAndReward();
     }
-  }, [userId]);
+  }, [userId, navigate]);
 
   const handleDayClick = async (day) => {
     const dayIndex = day - 1;
