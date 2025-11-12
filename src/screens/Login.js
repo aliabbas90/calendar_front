@@ -25,7 +25,7 @@ function Login() {
                 { action: 'LOGIN' }
             );
 
-            const response = await axios.get(`https://gift.tipii.fr/api/users/id-to-name`, {
+            const response = await axios.get(`https://calendar.tipii.fr/api/users/id-to-name`, {
                 params: {
                     id: id,
                     captchaToken: token,

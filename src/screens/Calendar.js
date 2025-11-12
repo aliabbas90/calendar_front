@@ -45,11 +45,11 @@ function Calendar() {
     const fetchDaysAndReward = async () => {
       try {
         // Récupérer l'état des jours depuis l'API
-        const daysResponse = await axios.get(`https://gift.tipii.fr/api/users/days?id=${userId}`);
+        const daysResponse = await axios.get(`https://calendar.tipii.fr/api/users/days?id=${userId}`);
         setDays(daysResponse.data);
 
         // Récupérer la récompense et le jour associé
-        const rewardResponse = await axios.get(`https://gift.tipii.fr/api/users/rewards?id=${userId}`);
+        const rewardResponse = await axios.get(`https://calendar.tipii.fr/api/users/rewards?id=${userId}`);
         setRewardData(rewardResponse.data); // Stocke directement l'objet { reward, reward_day_ }
 
         // Définir le jour actuel
@@ -70,7 +70,7 @@ function Calendar() {
 
     try {
       // Mettre à jour la case comme "opened" via l'API
-      await axios.put('https://gift.tipii.fr/api/users/update-day', {
+      await axios.put('https://calendar.tipii.fr/api/users/update-day', {
         id: userId,
         day_index: dayIndex,
         new_day_value: 'opened',
