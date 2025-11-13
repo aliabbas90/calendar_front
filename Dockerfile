@@ -6,6 +6,10 @@ RUN mkdir -p /usr/src/app
 # Set this new directory as our working directory for subsequent instructions
 WORKDIR /usr/src/app
 
+# 👇 Comes from Cloud Build --build-arg (check cloudbuild.yaml - I edited manually in cloud build)
+ARG REACT_APP_CAPTCHA_SITE_API
+ENV REACT_APP_CAPTCHA_SITE_API=$REACT_APP_CAPTCHA_SITE_API
+
 # Copy all files in the current directory into the container
 COPY . .
 
