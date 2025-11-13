@@ -9,6 +9,7 @@ function Login() {
 
     // Utilisation de la variable d'environnement injectée par Webpack
     const captchaSiteApiKey = process.env.REACT_APP_CAPTCHA_SITE_API;
+    console.log("Captcha key (from React):", process.env.REACT_APP_CAPTCHA_SITE_API);
 
     useEffect(() => {
         const script = document.createElement('script');
