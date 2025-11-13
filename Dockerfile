@@ -29,6 +29,8 @@ RUN npm install
 # Build the React app
 RUN npm run build
 
+RUN echo "REACT_APP_CAPTCHA_SITE_API during build: $REACT_APP_CAPTCHA_SITE_API"
+
 EXPOSE 8080
 
 # Serve the 'build' directory on port 4200 using 'serve'
